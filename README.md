@@ -40,7 +40,7 @@ or you can use `docker-compose` to run server if you don't want to install the p
 ```sh
 docker-compose up # this will build image first time
 docker-compose run app python manage.py collectstatic
-docker-compose run app python makemigrations or migrate
+docker-compose run app python manage.py makemigrations or migrate
 
 
 docker-compose run app python manage.py createsuperuser # to create a super user if you want
