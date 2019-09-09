@@ -1,0 +1,40 @@
+version: "3"
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=jing
+      - POSTGRES_PASSWORD=123456
+
+  redis:
+    image: redis
+
+  nginx:
+    image: nginx
+    links:
+      - app:uwsgi
+
+    ports:
+      - "${SERVER_PORT}:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./static/.:/var/web/static
+      - ./media/.:/var/web/media
+
+  app:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/dev.dockerfile
+    environment:
+      - PORT=8000
+      - STATIC=/app/static
+
+    volumes:
+      - .:/app
+
+    depends_on:
+      - db
+
+    links:
+      - redis:redis
+      - db:postgres
