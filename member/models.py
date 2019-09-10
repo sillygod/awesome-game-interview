@@ -53,7 +53,7 @@ class UserManager(BaseUserManager):
                     email,
                     username='',
                     password=None,
-                    mobile_number='',
+                    mobile='',
                     is_staff=False,
                     is_superuser=False,
                     **kwargs):
@@ -63,8 +63,8 @@ class UserManager(BaseUserManager):
             password = ''.join(
                 random.sample(string.ascii_letters + string.digits, 10))
 
-        return self._create_user(username, email, password, mobile_number,
-                                 is_staff, is_superuser, **kwargs)
+        return self._create_user(username, email, password, mobile, is_staff,
+                                 is_superuser, **kwargs)
 
     def create_superuser(self,
                          email,

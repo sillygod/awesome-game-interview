@@ -102,7 +102,7 @@ class UserViewSet(mixins.ListModelMixin, mixins.CreateModelMixin,
             # login after creating user
             jwt_serializer = JSONWebTokenSerializerWithEmail(
                 data={
-                    'email': request.data['email'],
+                    'username': request.data['username'],
                     'password': request.data['password']
                 })
             if not jwt_serializer.is_valid():

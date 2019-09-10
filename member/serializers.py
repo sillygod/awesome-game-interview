@@ -90,6 +90,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
         if value[0] not in string.ascii_letters:
             raise serializers.ValidationError(
                 'username should start with letters')
+        return value
 
     def validate_mobile(self, value):
         return value
